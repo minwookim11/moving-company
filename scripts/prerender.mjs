@@ -6,7 +6,7 @@ const page = (path) => template.replace('<div id="root"></div>', `<div id="root"
 await writeFile('dist/index.html', page('/'))
 await mkdir('dist/privacy', { recursive: true })
 await writeFile('dist/privacy/index.html', page('/privacy')
-  .replace('<title>짐까치 | 구미 용달·원룸이사·소형이사</title>', '<title>개인정보처리방침 | 짐까치</title>')
+  .replace(/<title>[^<]*<\/title>/, '<title>개인정보처리방침 | 짐까치</title>')
   .replace('<link rel="canonical" href="https://moving-company.kkkadad.workers.dev/" />', '<link rel="canonical" href="https://moving-company.kkkadad.workers.dev/privacy" />')
   .replace('<meta name="description"', '<meta name="robots" content="noindex, follow" />\n    <meta name="description"'))
 await rm('.prerender', { recursive: true, force: true })
