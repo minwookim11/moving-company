@@ -29,6 +29,11 @@ const submitFormSubmitPost = (target: string, body: FormData) => new Promise<Res
   form.method = 'POST'
   form.enctype = 'multipart/form-data'
   form.target = '_blank'
+  const captcha = document.createElement('input')
+  captcha.type = 'hidden'
+  captcha.name = '_captcha'
+  captcha.value = 'false'
+  form.appendChild(captcha)
   body.forEach((value, name) => {
     if (value instanceof File) {
       const input = document.createElement('input')
@@ -48,7 +53,7 @@ const submitFormSubmitPost = (target: string, body: FormData) => new Promise<Res
   })
   document.body.appendChild(form)
   form.submit()
-  resolve(new Response(JSON.stringify({ success: false, error: 'FormSubmit이 새 탭에서 CAPTCHA 또는 제출 결과를 표시합니다. 결과를 확인해 주세요.' }), { status: 400, headers: { 'Content-Type': 'application/json' } }))
+  resolve(new Response(JSON.stringify({ success: false, error: 'FormSubmit 결과가 새 탭에서 열렸습니다. 성공 화면을 확인해 주세요.' }), { status: 400, headers: { 'Content-Type': 'application/json' } }))
 })
 
 window.fetch = async (input, init) => {
