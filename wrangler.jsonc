@@ -3,6 +3,6 @@
   "name": "moving-company",
   "compatibility_date": "2026-11-04",
   "build": { "command": "npm run build" },
-  "assets": { "directory": "./dist" },
+  "assets": { "directory": "./dist", "html_handling": "drop-trailing-slash" },
   "observability": { "enabled": true }
 }
