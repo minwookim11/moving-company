@@ -65,7 +65,7 @@ window.fetch = async (input, init) => {
 
 createRoot(document.getElementById('root')!).render(<StrictMode><App /></StrictMode>)
 
-requestAnimationFrame(() => {
+window.addEventListener('jimkkachi:mounted', () => {
   document.querySelectorAll('footer span, .privacyPage article p').forEach((element) => {
     if (element.textContent?.includes('구미개미용달')) element.textContent = element.textContent.replace('구미개미용달', siteConfig.legalName)
     if (element.textContent?.includes('현재 사업자 상호는')) element.textContent = `사업자 상호는 ${siteConfig.legalName}입니다.`
