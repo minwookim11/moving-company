@@ -1,6 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App'
+import { siteConfig } from './config'
 import './styles.css'
 
 const campaignParams = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term']
@@ -65,6 +66,10 @@ window.fetch = async (input, init) => {
 createRoot(document.getElementById('root')!).render(<StrictMode><App /></StrictMode>)
 
 requestAnimationFrame(() => {
+  document.querySelectorAll('footer span, .privacyPage article p').forEach((element) => {
+    if (element.textContent?.includes('구미개미용달')) element.textContent = element.textContent.replace('구미개미용달', siteConfig.legalName)
+  })
+
   const header = document.querySelector('header')
   if (header && !document.querySelector('#eventBanner')) {
     const banner = document.createElement('section')
