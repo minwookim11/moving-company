@@ -65,6 +65,25 @@ window.fetch = async (input, init) => {
 createRoot(document.getElementById('root')!).render(<StrictMode><App /></StrictMode>)
 
 requestAnimationFrame(() => {
+  const header = document.querySelector('header')
+  if (header && !document.querySelector('#eventBanner')) {
+    const banner = document.createElement('section')
+    banner.id = 'eventBanner'
+    banner.className = 'eventBanner'
+    banner.innerHTML = '<div class="container eventBannerInner"><p><strong>홈페이지 보고 연락하면 이사비 10% 할인!</strong></p><button type="button">견적 문의하기</button></div>'
+    banner.querySelector('button')?.addEventListener('click', () => document.querySelector('#quote')?.scrollIntoView({ behavior: 'smooth' }))
+    header.before(banner)
+  }
+
+  const actions = document.querySelector('.hero .actions')
+  if (actions && !document.querySelector('#promoCard')) {
+    const promo = document.createElement('aside')
+    promo.id = 'promoCard'
+    promo.className = 'promoCard'
+    promo.innerHTML = '<span>JIMKKACHI SPECIAL</span><strong>홈페이지 방문 고객 특별 혜택</strong><b>이사비 10% 할인</b><small>“홈페이지 보고 연락했어요”라고 말씀해 주세요.</small>'
+    actions.after(promo)
+  }
+
   const quote = document.querySelector('#quote')
   if (!quote || document.querySelector('#gallery')) return
   const gallery = document.createElement('section')
